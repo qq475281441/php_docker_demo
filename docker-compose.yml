@@ -1,0 +1,17 @@
+version: "3"
+services:
+  php:
+    build: ./php7.4cli
+    ports:
+      - "9000:9000"
+    links:
+      - redis-db:redis-db
+    volumes:
+      - ../:/www:rw
+  redis-db:
+    build: ./redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/data:/data
+    restart: always
